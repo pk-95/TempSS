@@ -1,0 +1,23 @@
+Deteting SS:content provider OR file observer
+fix file observer
+
+Managing detecting service to last in background:
+foreground service OR background service OR job scheduler NOT background thread(we need it to interact even when app is exited) NOT WorkManager Worker(only 10 min limit)
+WoarkManager OR Job Scheduler OR something else
+
+declare service as private or not?
+
+Run in same thread or diff thread? (Check if app gives not responsive error)
+Remember that if you do use a service, it still runs in your application's main thread by default, so you should still create a new thread within the service if it performs intensive or blocking operations.
+
+If the service is bound to an activity that has user focus, it's less likely to be killed;
+ if the service is declared to run in the foreground, it's rarely killed.
+ If the service is started and is long-running, the system lowers its position in the list of background tasks over time, and the service becomes highly susceptible to killing—if your service is started, you must design it to gracefully handle restarts by the system.
+ If the system kills your service, it restarts it as soon as resources become available, but this also depends on the value that you return from onStartCommand().
+ For more information about when the system might destroy a service, see the Processes and Threading document.
+
+
+Using Intents (what are the diff types?) and Broadcast Receiver
+
+Check out blog and stackExchange answers bookmarked for never ending service
+Read up JobScheduler
